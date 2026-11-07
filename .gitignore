@@ -1,0 +1,8 @@
+node_modules/
+dist/
+release/
+test/out/
+test/shots/
+bin/ffmpeg.exe
+bin/*.zip
+*.log

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' media: blob: data:; img-src 'self' media: blob: data:; media-src 'self' media: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:;"
+    />
+    <title>MotionForge</title>
+    <link rel="stylesheet" href="styles/app.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- ------------------------------------------------------------------ -->
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">◆</span>
+          <span class="brand-name">MotionForge</span>
+        </div>
+        <input id="projName" class="proj-name" value="Untitled" spellcheck="false" />
+        <div class="top-divider"></div>
+        <button class="icon-btn" id="undoBtn" title="Undo (Ctrl+Z)">↶</button>
+        <button class="icon-btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)">↷</button>
+        <div class="flex-spacer"></div>
+        <button class="btn ghost" id="newBtn">New</button>
+        <button class="btn ghost" id="openBtn">Open</button>
+        <button class="btn ghost" id="saveBtn">Save</button>
+        <button class="btn primary" id="exportBtn">
+          <span class="btn-dot"></span>Export MP4
+        </button>
+      </header>
+
+      <!-- ------------------------------------------------------------------ -->
+      <div class="workspace">
+        <!-- left ---------------------------------------------------------- -->
+        <aside class="panel left-panel">
+          <div class="panel-head">
+            <span class="panel-title">Layers</span>
+            <span class="count" id="layerCount">0</span>
+          </div>
+
+          <div class="add-grid">
+            <button class="add-btn" data-add="text"><span>＋</span> Text</button>
+            <button class="add-btn" data-add="shape"><span>＋</span> Shape</button>
+            <button class="add-btn" data-add="image"><span>＋</span> Image</button>
+            <button class="add-btn" data-add="video"><span>＋</span> Video</button>
+            <button class="add-btn" data-add="solid"><span>＋</span> Solid</button>
+          </div>
+
+          <div class="layer-list" id="layerList"></div>
+
+          <div class="panel-head sub">
+            <span class="panel-title">Project</span>
+          </div>
+          <div class="project-panel" id="projectPanel">
+            <label class="field">
+              <span>Size</span>
+              <select id="sizePreset"></select>
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>Width</span>
+                <input id="projW" type="number" min="16" max="7680" step="1" />
+              </label>
+              <label class="field">
+                <span>Height</span>
+                <input id="projH" type="number" min="16" max="7680" step="1" />
+              </label>
+            </div>
+            <div class="field-row">
+              <label class="field">
+                <span>FPS</span>
+                <select id="projFps">
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="30" selected>30</option>
+                  <option value="60">60</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Length (s)</span>
+                <input id="projDur" type="number" min="0.5" max="600" step="0.5" />
+              </label>
+            </div>
+            <label class="field">
+              <span>Background</span>
+              <div class="color-field">
+                <input id="projBg" type="color" />
+                <input id="projBgHex" class="hex" type="text" spellcheck="false" />
+              </div>
+            </label>
+          </div>
+        </aside>
+
+        <!-- center -------------------------------------------------------- -->
+        <section class="viewer">
+          <div class="stage-outer" id="stageOuter">
+            <div class="stage-inner" id="stageInner">
+              <canvas id="stage"></canvas>
+              <div class="overlay" id="overlay">
+                <div class="bbox" id="bbox">
+                  <div class="handle rot" data-handle="rot"></div>
+                  <div class="handle tl" data-handle="tl"></div>
+                  <div class="handle tr" data-handle="tr"></div>
+                  <div class="handle bl" data-handle="bl"></div>
+                  <div class="handle br" data-handle="br"></div>
+                </div>
+              </div>
+            </div>
+            <div class="stage-empty" id="stageEmpty">
+              <div class="empty-mark">◆</div>
+              <div class="empty-title">Start with a layer</div>
+              <div class="empty-sub">Add text, a shape, or import media from the left panel.</div>
+            </div>
+          </div>
+
+          <div class="transport">
+            <button class="play-btn" id="playBtn" title="Play / Pause (Space)">
+              <span id="playIcon">▶</span>
+            </button>
+            <div class="time-display">
+              <span id="timeLabel">0:00.00</span>
+              <span class="dim">/</span>
+              <span id="durLabel" class="dim">0:08.00</span>
+            </div>
+            <div class="flex-spacer"></div>
+            <button class="icon-btn small" id="fitBtn" title="Fit view">Fit</button>
+            <label class="mini zoom-field">
+              <span>Zoom</span>
+              <input type="range" id="viewZoom" min="10" max="200" value="100" />
+              <span id="viewZoomVal" class="mono">100%</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- right --------------------------------------------------------- -->
+        <aside class="panel right-panel">
+          <div class="tabs">
+            <button class="tab active" data-tab="props">Properties</button>
+            <button class="tab" data-tab="effects">Effects</button>
+          </div>
+          <div class="inspector" id="inspector"></div>
+        </aside>
+      </div>
+
+      <!-- ------------------------------------------------------------------ -->
+      <footer class="timeline-panel">
+        <div class="tl-toolbar">
+          <div class="seg">
+            <button class="seg-btn active" id="modeTimeline">Timeline</button>
+            <button class="seg-btn" id="modeGraph">Graph editor</button>
+          </div>
+          <div class="flex-spacer"></div>
+          <span class="hint" id="tlHint">Drag clips to move · drag edges to trim · drag diamonds to retime</span>
+          <label class="mini zoom-field">
+            <span>Timeline zoom</span>
+            <input type="range" id="tlZoom" min="24" max="400" value="90" />
+          </label>
+        </div>
+
+        <div class="tl-main">
+          <div class="tl-scroll" id="tlScroll">
+            <div class="tl-content" id="tlContent">
+              <div class="tl-ruler-row">
+                <div class="tl-gutter"></div>
+                <div class="tl-ruler" id="tlRuler"></div>
+              </div>
+              <div class="tl-rows" id="tlRows"></div>
+              <div class="tl-playhead" id="playhead">
+                <div class="tl-playhead-head"></div>
+                <div class="tl-playhead-line"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="graph-wrap" id="graphWrap" hidden>
+            <div class="graph-head">
+              <div class="graph-props" id="graphProps"></div>
+              <div class="graph-ease" id="graphEase"></div>
+            </div>
+            <div class="graph-canvas-wrap" id="graphCanvasWrap">
+              <canvas id="graphCanvas"></canvas>
+              <div class="graph-empty" id="graphEmpty" hidden>
+                Select a layer with keyframes to edit its curves.
+              </div>
+            </div>
+            <div class="graph-foot">
+              <span id="graphInfo">Drag points to retime · drag handles to shape the curve</span>
+              <span class="mono" id="graphValue"></span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- -------------------------------------------------------------------- -->
+    <div class="modal-backdrop" id="exportModal" hidden>
+      <div class="modal">
+        <div class="modal-head">
+          <h2>Export MP4</h2>
+          <button class="icon-btn" id="expClose">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="exp-row">
+            <label class="field">
+              <span>Resolution</span>
+              <select id="expScale">
+                <option value="1">100%</option>
+                <option value="0.75">75%</option>
+                <option value="0.5">50%</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Frame rate</span>
+              <select id="expFps">
+                <option value="project">Project (30)</option>
+                <option value="24">24</option>
+                <option value="30">30</option>
+                <option value="60">60</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Quality</span>
+              <select id="expQuality">
+                <option value="16">High</option>
+                <option value="20" selected>Balanced</option>
+                <option value="26">Small file</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="exp-summary" id="expSummary"></div>
+
+          <div class="progress">
+            <div class="progress-bar" id="expBar"></div>
+          </div>
+          <div class="exp-status" id="expStatus">Ready.</div>
+
+          <div class="modal-hint" id="expHint"></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn ghost" id="expCancel">Cancel</button>
+          <button class="btn primary" id="expStart">Export</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toasts" id="toasts"></div>
+    <div class="ctx-menu" id="ctxMenu" hidden></div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

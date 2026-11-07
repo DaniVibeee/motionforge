@@ -1,0 +1,144 @@
+{
+  "playback": {
+    "tPlaying": 1.5077,
+    "tPaused": {
+      "time": 1.8545000000000005,
+      "playing": false
+    }
+  },
+  "bbox": {
+    "x": 588.9287109375,
+    "y": 210.25111389160156,
+    "width": 222.140625,
+    "height": 126.64060974121094
+  },
+  "canvasDrag": {
+    "before": {
+      "id": "layer_mw6hc2z33",
+      "x": 540,
+      "y": 806.4
+    },
+    "after": {
+      "x": 714.82,
+      "y": 903.52
+    }
+  },
+  "undo": {
+    "x": 540,
+    "y": 806.4,
+    "undoDepth": 0
+  },
+  "effects": {
+    "fxState": {
+      "effects": [
+        {
+          "type": "blur",
+          "enabled": true
+        }
+      ]
+    },
+    "pixelBefore": 20939569,
+    "pixelAfter": 20923244,
+    "changed": true
+  },
+  "timelineClipDrag": {
+    "layerBefore": {
+      "start": 0,
+      "end": 6
+    },
+    "layerAfter": {
+      "start": 0,
+      "end": 5.5
+    }
+  },
+  "graphInitial": {
+    "path": "transform.scale",
+    "points": [
+      {
+        "t": 0.15,
+        "v": 0.72,
+        "x": 89.25,
+        "y": 149.88235294117646
+      },
+      {
+        "t": 1.1,
+        "v": 1,
+        "x": 312.5,
+        "y": 38.117647058823536
+      }
+    ],
+    "handles": {
+      "out": null,
+      "in": null
+    }
+  },
+  "graphAfterDrag": {
+    "selected": {
+      "t": 0.32,
+      "v": 0.759
+    },
+    "points": [
+      {
+        "t": 0.32,
+        "v": 0.759,
+        "x": 129.2,
+        "y": 149.88235294117646
+      },
+      {
+        "t": 1.1,
+        "v": 1,
+        "x": 312.5,
+        "y": 38.117647058823536
+      }
+    ],
+    "ease": {
+      "type": "bezier",
+      "p": [
+        0.42,
+        0,
+        0.58,
+        1
+      ]
+    },
+    "handles": {
+      "out": {
+        "x": 206.18599999999998,
+        "y": 149.88235294117646
+      },
+      "in": null
+    }
+  },
+  "graphAfterHandle": {
+    "ease": {
+      "type": "bezier",
+      "p": [
+        0.5563884595672225,
+        0.26842130962171074,
+        0.58,
+        1
+      ]
+    },
+    "handles": {
+      "out": {
+        "x": 231.1860046386719,
+        "y": 119.88232421874997
+      },
+      "in": null
+    }
+  },
+  "resize": {
+    "w": 720,
+    "h": 1280,
+    "canvas": {
+      "w": 720,
+      "h": 1280
+    }
+  },
+  "videoPlayback": {
+    "currentTime": 2.9076,
+    "paused": false,
+    "ready": true,
+    "duration": 5,
+    "storeTime": 3.0282000000000013
+  }
+}

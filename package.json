@@ -1,0 +1,43 @@
+{
+  "name": "motionforge",
+  "productName": "MotionForge",
+  "version": "1.0.0",
+  "description": "Motion graphics and video editor for desktop",
+  "main": "main.js",
+  "author": "MotionForge",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable",
+    "pack": "electron-builder --win --dir"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "playwright-core": "^1.65.0"
+  },
+  "build": {
+    "appId": "com.motionforge.app",
+    "productName": "MotionForge",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "bin/ffmpeg.exe",
+        "to": "bin/ffmpeg.exe"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "portable"
+      ],
+      "artifactName": "MotionForge-${version}-portable.${ext}"
+    }
+  }
+}

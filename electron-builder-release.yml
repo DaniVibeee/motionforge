@@ -1,0 +1,18 @@
+appId: com.motionforge.app
+productName: MotionForge
+asar: true
+files:
+  - main.js
+  - preload.js
+  - src/**/*
+  - package.json
+extraResources:
+  - from: bin/ffmpeg.exe
+    to: bin/ffmpeg.exe
+win:
+  icon: build/icon.ico
+  target:
+    - portable
+  artifactName: MotionForge-${version}-portable.${ext}
+directories:
+  output: release
