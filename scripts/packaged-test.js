@@ -1,7 +1,7 @@
 // Verifies the packaged Windows build launches and exports.
 const path = require('node:path');
 const fs = require('node:fs');
-const { execFileSync } = require('node:child_process');
+const { spawnSync } = require('node:child_process');
 const { _electron: electron } = require('playwright-core');
 
 const root = path.resolve(__dirname, '..');
@@ -57,11 +57,11 @@ const outPath = path.join(outDir, 'packaged-export.mp4').replace(/\\/g, '/');
 
   let probe = '';
   if (result.ok) {
-    probe = execFileSync(
-      path.join(root, 'bin', 'ffmpeg.exe'),
-      ['-hide_banner', '-i', outPath],
-      { encoding: 'utf8', stdio: ['ignore', 'ignore', 'pipe'] }
-    );
+    const p = spawnSync(path.join(root, 'bin', 'ffmpeg.exe'), ['-hide_banner', '-i', outPath], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'ignore', 'pipe'],
+    });
+    probe = p.stderr || '';
   }
 
   console.log('INFO', JSON.stringify(info, null, 2));
