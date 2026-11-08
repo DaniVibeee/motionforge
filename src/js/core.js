@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// MotionForge — core model, animation engine, easing and effect definitions
+// Nameless Editing — core model, animation engine, easing and effect definitions
 // ---------------------------------------------------------------------------
 
 export const clamp = (v, a, b) => Math.min(b, Math.max(a, v));

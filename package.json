@@ -1,10 +1,10 @@
 {
-  "name": "motionforge",
-  "productName": "MotionForge",
+  "name": "nameless-editing",
+  "productName": "Nameless Editing",
   "version": "1.0.0",
   "description": "Motion graphics and video editor for desktop",
   "main": "main.js",
-  "author": "MotionForge",
+  "author": "Nameless Editing",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
@@ -17,8 +17,8 @@
     "playwright-core": "^1.65.0"
   },
   "build": {
-    "appId": "com.motionforge.app",
-    "productName": "MotionForge",
+    "appId": "com.namelessediting.app",
+    "productName": "Nameless Editing",
     "asar": true,
     "files": [
       "main.js",
@@ -37,7 +37,7 @@
       "target": [
         "portable"
       ],
-      "artifactName": "MotionForge-${version}-portable.${ext}"
+      "artifactName": "NamelessEditing-${version}-portable.${ext}"
     }
   }
 }

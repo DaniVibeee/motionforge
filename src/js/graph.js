@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// MotionForge — keyframe graph editor (bezier curve editing)
+// Nameless Editing — keyframe graph editor (bezier curve editing)
 // ---------------------------------------------------------------------------
 
 import {

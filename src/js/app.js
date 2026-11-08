@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// MotionForge — application bootstrap / controller
+// Nameless Editing — application bootstrap / controller
 // ---------------------------------------------------------------------------
 
 import {
@@ -958,7 +958,7 @@ function createDemoProject() {
   const title = createLayer('text', p);
   title.name = 'Title';
   const T = title.text;
-  T.content = 'MOTION\nFORGE';
+  T.content = 'NAMELESS\nEDITING';
   T.fontSize = 168;
   T.fontWeight = 800;
   T.letterSpacing = -4;

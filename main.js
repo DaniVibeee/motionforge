@@ -121,7 +121,7 @@ function createWindow() {
     backgroundColor: '#0b0d12',
     show: false,
     autoHideMenuBar: true,
-    title: 'MotionForge',
+    title: 'Nameless Editing',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -387,8 +387,8 @@ ipcMain.handle('app:info', () => ({
 ipcMain.handle('project:save', async (_e, { data, suggestedName }) => {
   const res = await dialog.showSaveDialog(win, {
     title: 'Save project',
-    defaultPath: path.join(app.getPath('documents'), `${suggestedName || 'project'}.mfproj`),
-    filters: [{ name: 'MotionForge Project', extensions: ['mfproj'] }],
+    defaultPath: path.join(app.getPath('documents'), `${suggestedName || 'project'}.neproj`),
+    filters: [{ name: 'Nameless Editing Project', extensions: ['neproj'] }],
   });
   if (res.canceled || !res.filePath) return { ok: false, canceled: true };
   await fsp.writeFile(res.filePath, data, 'utf8');
@@ -399,7 +399,7 @@ ipcMain.handle('project:open', async () => {
   const res = await dialog.showOpenDialog(win, {
     title: 'Open project',
     properties: ['openFile'],
-    filters: [{ name: 'MotionForge Project', extensions: ['mfproj'] }, { name: 'All files', extensions: ['*'] }],
+    filters: [{ name: 'Nameless Editing Project', extensions: ['neproj'] }, { name: 'All files', extensions: ['*'] }],
   });
   if (res.canceled || !res.filePaths.length) return { ok: false, canceled: true };
   const p = res.filePaths[0];

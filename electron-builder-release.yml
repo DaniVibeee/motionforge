@@ -1,5 +1,5 @@
-appId: com.motionforge.app
-productName: MotionForge
+appId: com.namelessediting.app
+productName: Nameless Editing
 asar: true
 files:
   - main.js
@@ -13,6 +13,6 @@ win:
   icon: build/icon.ico
   target:
     - portable
-  artifactName: MotionForge-${version}-portable.${ext}
+  artifactName: NamelessEditing-${version}-portable.${ext}
 directories:
   output: release

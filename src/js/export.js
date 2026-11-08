@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// MotionForge — export pipeline (frame-accurate render -> ffmpeg)
+// Nameless Editing — export pipeline (frame-accurate render -> ffmpeg)
 // ---------------------------------------------------------------------------
 
 import { store, clamp } from './core.js';

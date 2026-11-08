@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// MotionForge — inspector (properties + effects)
+// Nameless Editing — inspector (properties + effects)
 // ---------------------------------------------------------------------------
 
 import {

@@ -1,4 +1,4 @@
-# MotionForge
+# Nameless Editing
 
 A desktop motion-graphics and video editor — multi-layer timeline, keyframe graph editor,
 on-canvas transform handles, effects, and watermark-free H.264 MP4 export.
@@ -13,7 +13,7 @@ no watermarks.
 **Packaged app**
 
 ```
-release/MotionForge-1.0.0-portable.exe
+release/NamelessEditing-1.0.0-portable.exe
 ```
 
 Double-click it. The portable build unpacks itself to a temp folder and starts.
@@ -112,7 +112,7 @@ Canvas handles: drag the box to move, corners to scale (uniform), pink handle to
 
 ## Project files
 
-Projects are saved as readable JSON (`.mfproj`-style; any extension works) containing
+Projects are saved as readable JSON (`.neproj`-style; any extension works) containing
 the composition, layers, keyframes, effects and absolute media paths. Media is not
 copied into the project — keep your source files where they are.
 
@@ -140,7 +140,7 @@ and check that `resources/bin/ffmpeg.exe` exists next to the app executable.
 ## Development
 
 ```
-motionforge/
+nameless-editing/
   main.js              Electron main process, media protocol, ffmpeg pipe
   preload.js           Safe IPC bridge (window.api)
   src/

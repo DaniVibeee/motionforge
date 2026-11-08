@@ -5,7 +5,7 @@ const { execFileSync } = require('node:child_process');
 const { _electron: electron } = require('playwright-core');
 
 const root = path.resolve(__dirname, '..');
-const exe = path.join(root, 'dist', 'win-unpacked', 'MotionForge.exe');
+const exe = process.env.MF_EXE || path.join(root, 'release', 'win-unpacked', 'Nameless Editing.exe');
 const outDir = path.join(root, 'test', 'out');
 fs.mkdirSync(outDir, { recursive: true });
 const outPath = path.join(outDir, 'packaged-export.mp4').replace(/\\/g, '/');
