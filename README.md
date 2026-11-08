@@ -8,9 +8,27 @@ no watermarks.
 
 ---
 
+## Download
+
+**Latest portable build (Windows 10/11, 64-bit):**
+https://github.com/DaniVibeee/nameless-editing/releases/latest
+
+Or install it with one PowerShell command:
+
+```powershell
+irm https://raw.githubusercontent.com/DaniVibeee/nameless-editing/main/scripts/install.ps1 | iex
+```
+
+That downloads the newest portable build to
+`%LOCALAPPDATA%\Nameless Editing\Nameless Editing.exe` and offers to launch it.
+Windows SmartScreen may warn because the app is unsigned — choose
+"More info → Run anyway".
+
+---
+
 ## Run it
 
-**Packaged app**
+**Packaged app (local build)**
 
 ```
 release/NamelessEditing-1.0.0-portable.exe
